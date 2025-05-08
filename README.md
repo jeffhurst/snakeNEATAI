@@ -15,8 +15,8 @@ A highly optimized C++17 implementation of the NEAT algorithm training an AI to 
 ## Build
 
 ```bash
-git clone <repo>
-cd repo
+git clone "https://github.com/jeffhurst/snakeNEATAI"
+cd snakeNEATAI
 mkdir build && cd build
 cmake ..
 make -j

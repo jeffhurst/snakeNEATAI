@@ -7,7 +7,7 @@ namespace game {
 
 struct EvalResult {
     double fitness;
-    std::vector<Snake::Vec2i> bestPath; // for visualization
+    std::vector<Vec2i> bestPath; // for visualization
 };
 
 class Game {
@@ -18,6 +18,6 @@ public:
     EvalResult evaluate(NetworkT& net);
 private:
     int gridW_, gridH_, maxTicks_;
-    std::mt19937 rng_;
+   
 };
 } // namespace game

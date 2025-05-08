@@ -11,7 +11,7 @@ public:
     ~Renderer();
     void beginFrame();
     void drawGrid();
-    void drawSnake(const std::vector<game::Snake::Vec2i>& body);
+    void drawSnake(const std::vector<game::Vec2i>& body);
     void drawFood(int x, int y);
     void drawNetwork(const neat::Network& net);
     void drawStats(int gen, float maxF, float avgF, int speciesCount);

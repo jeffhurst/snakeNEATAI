@@ -1,4 +1,5 @@
 #include "Renderer.h"
+#include "game/Snake.h" 
 #include <raylib.h>
 #include <algorithm>
 using namespace render;
@@ -22,18 +23,34 @@ bool Renderer::shouldClose(){ return WindowShouldClose(); }
 
 void Renderer::drawGrid(){
     float cellW = float(screenW_)/gridW_, cellH = float(screenH_)/gridH_;
-    for (int x=0;x<=gridW_;++x)
-        DrawLineV({x*cellW,0},{x*cellW,screenH_}, LIGHTGRAY);
-    for (int y=0;y<=gridH_;++y)
-        DrawLineV({0,y*cellH},{screenW_,y*cellH}, LIGHTGRAY);
-}
-
-void Renderer::drawSnake(const std::vector<Snake::Vec2i>& body){
-    float cellW = float(screenW_)/gridW_, cellH = float(screenH_)/gridH_;
-    for (auto& s : body) {
-        DrawRectangle(s.x*cellW, s.y*cellH, cellW, cellH, GREEN);
+    
+    for (int x = 0; x <= gridW_; ++x) {
+        // cast ints to float so no narrowing in {}
+        DrawLineV({ x * cellW, 0.0f },
+                  { x * cellW, static_cast<float>(screenH_) },
+                  LIGHTGRAY);
+    }
+    for (int y = 0; y <= gridH_; ++y) {
+        DrawLineV({ 0.0f, y * cellH },
+                  { static_cast<float>(screenW_), y * cellH },
+                  LIGHTGRAY);
     }
 }
+
+void Renderer::drawSnake(const std::vector<game::Vec2i>& body) {
+    float cellW = static_cast<float>(screenW_) / gridW_;
+    float cellH = static_cast<float>(screenH_) / gridH_;
+    for (auto& s : body) {
+        DrawRectangle(
+            static_cast<int>(s.x * cellW),
+            static_cast<int>(s.y * cellH),
+            static_cast<int>(cellW),
+            static_cast<int>(cellH),
+            GREEN
+        );
+    }
+}
+
 
 void Renderer::drawFood(int x, int y){
     float cellW = float(screenW_)/gridW_, cellH = float(screenH_)/gridH_;

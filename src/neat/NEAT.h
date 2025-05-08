@@ -4,6 +4,7 @@
 #include "Species.h"
 #include <vector>
 #include <random>
+#include <functional>
 
 namespace neat {
 
@@ -14,6 +15,7 @@ struct NEAT {
     Genome* getBest() const;
     const std::vector<Species>& species() const { return species_; }
     int generation = 0;
+    const std::vector<Genome*>& population() const { return population_; }
 private:
     int popSize_;
     std::vector<Genome*> population_;
