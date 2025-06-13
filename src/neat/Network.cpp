@@ -1,7 +1,9 @@
+// Network.cpp
 #include "Network.h"
 #include <unordered_map>
 #include <queue>
 #include <cmath>
+#include <iostream>
 using namespace neat;
 
 Network::Network(const Genome& g)
@@ -33,27 +35,42 @@ void Network::buildTopology() {
 std::vector<float> Network::feed(const std::vector<float>& in) {
     std::unordered_map<NodeId,float> values;
     size_t i = 0;
-    // assign inputs
+    // 1) initialize all node values
     for (auto& kv : genome_.nodes) {
         if (kv.second.type == NodeGene::INPUT)
             values[kv.first] = in.at(i++);
         else
             values[kv.first] = 0.0f;
     }
-    // propagate
+
+    // 2) propagate in topological order
     for (NodeId nid : topoOrder_) {
         float v = values[nid];
-        for (auto& kv : genome_.connections) if (kv.second.enabled && kv.second.from==nid) {
-            values[kv.second.to] += v * kv.second.weight;
+        for (auto& ck : genome_.connections) {
+            auto& cg = ck.second;
+            if (cg.enabled && cg.from == nid) {
+                values[cg.to] += v * cg.weight;
+            }
         }
-        // activation
-        if (genome_.nodes.at(nid).type != NodeGene::INPUT)
-            values[nid] = std::tanh(values[nid]);
+
+        // 3) activation — guard the at()
+        auto it = genome_.nodes.find(nid);
+        if (it != genome_.nodes.end()) {
+            if (it->second.type != NodeGene::INPUT) {
+                values[nid] = std::tanh(values[nid]);
+            }
+        } else {
+            std::cerr << "Warning: node " << nid
+                      << " not in genome_.nodes; skipping activation\n";
+        }
     }
-    // collect outputs
+
+    // 4) collect outputs
     std::vector<float> out;
-    for (auto& kv : genome_.nodes)
-        if (kv.second.type == NodeGene::OUTPUT)
+    for (auto& kv : genome_.nodes) {
+        if (kv.second.type == NodeGene::OUTPUT) {
             out.push_back(values[kv.first]);
+        }
+    }
     return out;
 }

@@ -1,9 +1,10 @@
+// Game.cpp
 #include "Game.h"
 #include "Snake.h"
 #include <cmath>
 #include <iostream>
 #include <random> 
-
+#include <algorithm>
 using namespace game;
 
 Game::Game(int w, int h, int maxT)

@@ -1,125 +1,118 @@
 // main.cpp
-#include "core/ThreadPool.h"
+
+#include <iostream>
+#include <vector>
+
+// Project headers
 #include "game/Game.h"
 #include "neat/NEAT.h"
 #include "neat/Network.h"
 #include "render/Renderer.h"
 
-#include <atomic>
-#include <chrono>
-#include <fstream>
-#include <iostream>
-#include <mutex>
-#include <string>
-#include <thread>
-#include <vector>
+int main() {
+    // ------------------------------------------------------------------------
+    // Simulation parameters (debug-friendly, small)
+    // ------------------------------------------------------------------------
+    const int GRID_W       = 10;    ///< grid width  (cells)
+    const int GRID_H       = 10;    ///< grid height (cells)
+    const int MAX_TICKS    = 100;   ///< max steps per simulation
 
-int main(int argc, char** argv){
-    const int GRID_W    = 20;
-    const int GRID_H    = 20;
-    const int MAX_TICKS = 200;
-    const int POP       = 150;
-    const int GENS      = 1000;
-    const int INPUT_N   = 4;
-    const int OUTPUT_N  = 4;
-    const int THREADS   = std::thread::hardware_concurrency();
+    const int POP_SIZE     = 50;    ///< genomes per generation
+    const int INPUT_N      = 4;     ///< network input size (hx, hy, fx, fy)
+    const int OUTPUT_N     = 4;     ///< network outputs (UP,DOWN,LEFT,RIGHT)
+    const int GENERATIONS  = 100;   ///< total training generations
 
-    neat::NEAT neat(POP, INPUT_N, OUTPUT_N);
-    core::ThreadPool pool(THREADS);
-    game::Game   simulator(GRID_W, GRID_H, MAX_TICKS);
-    render::Renderer renderer(600, 600, GRID_W, GRID_H);
+    // ------------------------------------------------------------------------
+    // Rendering parameters
+    // ------------------------------------------------------------------------
+    const int SCREEN_W = 600;       ///< window width  (pixels)
+    const int SCREEN_H = 600;       ///< window height (pixels)
 
-    bool paused      = false;
-    float speed      = 0.1f;
-    int   observeIdx = 0;
+    // ------------------------------------------------------------------------
+    // Initialize core systems
+    // ------------------------------------------------------------------------
+    game::Game     game(GRID_W, GRID_H, MAX_TICKS);
+    neat::NEAT     neat(POP_SIZE, INPUT_N, OUTPUT_N);
+    render::Renderer renderer(SCREEN_W, SCREEN_H, GRID_W, GRID_H);
 
-    std::mutex print_mtx;
+    // ------------------------------------------------------------------------
+    // Main generational loop
+    // ------------------------------------------------------------------------
+    while (!renderer.shouldClose() && neat.generation < GENERATIONS) {
+        int gen = neat.generation;
+        std::cout << "\n===== Generation " << gen << " =====\n";
 
-    for (int gen = 0; gen < GENS && !renderer.shouldClose(); ++gen) {
+        double totalFitness = 0.0;
+        double maxFitness   = -1e9;
+        int    bestIdx      = 0;
+
+        // Evaluate every genome
+        auto pop = neat.population();
+        for (size_t i = 0; i < pop.size(); ++i) {
+            neat::Genome* g = pop[i];
+
+            // Build network from genome
+            neat::Network net(*g);
+
+            // Run simulation and get fitness + sampled path
+            game::EvalResult res = game.evaluate(net);
+            g->fitness = res.fitness;
+            totalFitness += res.fitness;
+
+            // Track the best genome index
+            if (res.fitness > maxFitness) {
+                maxFitness = res.fitness;
+                bestIdx    = static_cast<int>(i);
+            }
+
+            // Verbose per-genome logging
+            std::cout << "[Gen " << gen << "] Genome " << i
+                      << " -> Fitness: " << res.fitness << "\n";
+        }
+
+        // Compute summary stats
+        double avgFitness   = totalFitness / pop.size();
+        int    speciesCount = static_cast<int>(neat.species().size());
+
+        // Summary log
+        std::cout << "Summaries for Generation " << gen << ":\n"
+                  << "  Max Fitness   = " << maxFitness   << "\n"
+                  << "  Avg Fitness   = " << avgFitness   << "\n"
+                  << "  Species Count = " << speciesCount << "\n";
+
+        // --------------------------------------------------------------------
+        // Visualization: re-evaluate best genome for path, then render a
+        // single frame showing its sampled path + neural network + stats.
+        // --------------------------------------------------------------------
         {
-            std::lock_guard<std::mutex> lock(print_mtx);
-            std::cout << "[LOG] Starting generation " << gen << "\n";
-        }
+            neat::Genome* bestG = pop[bestIdx];
+            neat::Network bestNet(*bestG);
+            game::EvalResult bestRes = game.evaluate(bestNet);
 
-        // reset counter
-        std::atomic<int> completed{0};
-
-        // 1) enqueue all POP evaluations
-        for (int i = 0; i < POP; ++i) {
-            pool.enqueue([&, i]() {
-                auto* g = neat.population()[i];
-                neat::Network net(*g);
-                auto    res = simulator.evaluate(net);
-                g->fitness   = res.fitness;
-
-                // only print every 10th so we don't drown stdout
-                if ((i % 10) == 0) {
-                    std::lock_guard<std::mutex> lock(print_mtx);
-                    std::cout << "[EVAL] gen=" << gen
-                              << "  idx=" << i
-                              << "  fitness=" << res.fitness
-                              << "\n";
-                }
-                completed.fetch_add(1, std::memory_order_relaxed);
-            });
-        }
-
-        // 2) wait — but still pump UI so window never hangs
-        while (completed.load(std::memory_order_relaxed) < POP) {
-            // draw a simple “waiting…” frame
             renderer.beginFrame();
-            renderer.processUI(paused, speed, observeIdx);
             renderer.drawGrid();
-            // you could draw a progress bar here… for now just stats text
-            renderer.drawStats(gen,
-                               0.0f,
-                               /*avg*/ float(completed.load())/POP,
-                               neat.species().size());
+
+            // Draw sampled head-positions (every 10 ticks) as a “snake”
+            renderer.drawSnake(bestRes.bestPath);
+
+            // Render the network topology & activations
+            renderer.drawNetwork(bestNet);
+
+            // Overlay generation stats on screen
+            renderer.drawStats(
+                gen,
+                static_cast<float>(maxFitness),
+                static_cast<float>(avgFitness),
+                speciesCount
+            );
             renderer.endFrame();
-
-            // small sleep to avoid burning 100% CPU
-            std::this_thread::sleep_for(std::chrono::milliseconds(10));
-
-            if (renderer.shouldClose()) break;
         }
 
-        // 3) now that every genome->fitness is set, call epoch once
-        neat.epoch([](neat::Genome&){ /* no-op */ });
-
-        {
-            std::lock_guard<std::mutex> lock(print_mtx);
-            std::cout << "[GEN] " << gen
-                      << " – evaluation done. Best="
-                      << neat.getBest()->fitness
-                      << "\n[LOG]  Finished epoch; best fitness = "
-                      << neat.getBest()->fitness
-                      << "\n";
-        }
-
-        // render best one last time before moving on
-        auto* best    = neat.getBest();
-        neat::Network bn(*best);
-        auto    br    = simulator.evaluate(bn);
-
-        while (!renderer.shouldClose()) {
-            renderer.beginFrame();
-            renderer.processUI(paused, speed, observeIdx);
-            renderer.drawGrid();
-            renderer.drawSnake(br.bestPath);
-            renderer.drawStats(gen,
-                               best->fitness,
-                               /*avg*/0,
-                               neat.species().size());
-            renderer.endFrame();
-            if (!paused) break;
-        }
-
-        if (gen % 50 == 0) {
-            std::lock_guard<std::mutex> lock(print_mtx);
-            std::cout << "[LOG]  Exporting best_genome_" << gen << ".json\n";
-            std::ofstream fout("best_genome_" + std::to_string(gen) + ".json");
-            fout << "{ \"fitness\": " << best->fitness << " }";
-        }
+        // --------------------------------------------------------------------
+        // Speciate & reproduce to form the next generation
+        // We pass a no-op evalFunc since fitness is already filled.
+        // --------------------------------------------------------------------
+        neat.epoch([](neat::Genome&){ /* already evaluated */ });
     }
 
     return 0;
