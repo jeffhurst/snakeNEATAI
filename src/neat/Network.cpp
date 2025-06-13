@@ -60,10 +60,10 @@ std::vector<float> Network::feed(const std::vector<float>& in) {
                 values[nid] = std::tanh(values[nid]);
             }
         } else {
-            std::cerr << "Warning: node " << nid
-                      << " not in genome_.nodes; skipping activation\n";
+            // pass
         }
     }
+    activations_ = values;
 
     // 4) collect outputs
     std::vector<float> out;

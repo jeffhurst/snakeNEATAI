@@ -10,9 +10,9 @@ static std::uniform_real_distribution<float> uni(-1.0f,1.0f);
 
 void Genome::mutateWeights() {
     for (auto& kv : connections) {
-        if (uni(rng) < 0.8f) // 80% perturb
-            kv.second.weight += std::normal_distribution<float>(0,0.2f)(rng);
-        else               // 20% assign new
+        if (uni(rng) < 0.9f) // 90% perturb
+            kv.second.weight += std::normal_distribution<float>(0,0.1f)(rng);
+        else               // else assign new
             kv.second.weight = uni(rng);
     }
 }
