@@ -31,7 +31,6 @@ set(MAIN_SRCS
 )
 
 add_executable(SnakeNEAT
-    ${CORE_SRCS}
     ${GAME_SRCS}
     ${NEAT_SRCS}
     ${RENDER_SRCS}
@@ -41,7 +40,6 @@ add_executable(SnakeNEAT
 # include directories
 target_include_directories(SnakeNEAT PRIVATE
     src
-    src/core
     src/game
     src/neat
     src/render

@@ -1,3 +1,0 @@
-C:/Users/jhurs/dev/NEAT/snakeNeatAI/debug/CMakeFiles/SnakeNEAT.dir
-C:/Users/jhurs/dev/NEAT/snakeNeatAI/debug/CMakeFiles/ALL_BUILD.dir
-C:/Users/jhurs/dev/NEAT/snakeNeatAI/debug/CMakeFiles/ZERO_CHECK.dir
