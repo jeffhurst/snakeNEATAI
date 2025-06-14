@@ -19,12 +19,12 @@ int main() {
     // ------------------------------------------------------------------------
     const int GRID_W       = 10;    ///< grid width  (cells)
     const int GRID_H       = 10;    ///< grid height (cells)
-    const int MAX_TICKS    = 500;   ///< max steps per simulation
+    const int MAX_TICKS    = 100;   ///< max steps per simulation
 
-    const int POP_SIZE     = 1000;    ///< genomes per generation
+    const int POP_SIZE     = 10000;    ///< genomes per generation
     const int INPUT_N      = 4;     ///< network input size (hx, hy, fx, fy)
     const int OUTPUT_N     = 4;     ///< network outputs (UP,DOWN,LEFT,RIGHT)
-    const int GENERATIONS  = 4000;   ///< total training generations
+    const int GENERATIONS  = 200;   ///< total training generations
 
     // ------------------------------------------------------------------------
     // Rendering parameters
