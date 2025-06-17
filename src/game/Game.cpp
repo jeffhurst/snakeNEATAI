@@ -23,6 +23,7 @@ EvalResult Game::evaluate(N& net) {
                                      distY(0, gridH_-1);
     Vec2i food{distX(local_rng), distY(local_rng)};
     double fitness = 0;
+    int ticksSinceLastFood = 0;
     std::vector<Vec2i> path;
     for (int t = 0; t < maxTicks_; ++t) {
         // prepare inputs: normalized head pos, food delta
@@ -30,7 +31,13 @@ EvalResult Game::evaluate(N& net) {
               hy = float(snake.head().y)/gridH_,
               fx = float(food.x - snake.head().x)/gridW_,
               fy = float(food.y - snake.head().y)/gridH_;
-        auto outputs = net.feed({hx, hy, fx, fy});
+        auto ray = snake.getRayCast();
+        float left  = std::get<0>(ray);
+        float front = std::get<1>(ray);
+        float right = std::get<2>(ray);
+        float bias = 1.0;
+
+        auto outputs = net.feed({hx, hy, fx, fy, left, front, right, bias});
         // pick largest output -> direction
         int dir = std::distance(outputs.begin(),
             std::max_element(outputs.begin(), outputs.end()));
@@ -39,8 +46,12 @@ EvalResult Game::evaluate(N& net) {
         // ate food?
         if (snake.head().x == food.x && snake.head().y == food.y) {
             snake.grow();
-            fitness += 100.0;
+            fitness += 500.0;
             food = {distX(local_rng), distY(local_rng)};
+            ticksSinceLastFood = 0;
+        }
+        if (ticksSinceLastFood >= 10) {
+            fitness -= 10.0;
         }
         // incremental fitness: survival + closeness to food
         double dist = std::hypot(food.x - snake.head().x, food.y - snake.head().y);

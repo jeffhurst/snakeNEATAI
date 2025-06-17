@@ -15,16 +15,16 @@
 
 int main() {
     // ------------------------------------------------------------------------
-    // Simulation parameters (debug-friendly, small)
+    // Simulation parameters 
     // ------------------------------------------------------------------------
-    const int GRID_W       = 10;    ///< grid width  (cells)
-    const int GRID_H       = 10;    ///< grid height (cells)
-    const int MAX_TICKS    = 100;   ///< max steps per simulation
+    const int GRID_W       = 5;    ///< grid width  (cells)
+    const int GRID_H       = 5;    ///< grid height (cells)
+    const int MAX_TICKS    = 1000;   ///< max steps per simulation
 
-    const int POP_SIZE     = 10000;    ///< genomes per generation
-    const int INPUT_N      = 4;     ///< network input size (hx, hy, fx, fy)
+    const int POP_SIZE     = 1000;    ///< genomes per generation
+    const int INPUT_N      = 8;     ///< network input size (hx, hy, fx, fy)
     const int OUTPUT_N     = 4;     ///< network outputs (UP,DOWN,LEFT,RIGHT)
-    const int GENERATIONS  = 200;   ///< total training generations
+    const int GENERATIONS  = 2000;   ///< total training generations
 
     // ------------------------------------------------------------------------
     // Rendering parameters
@@ -44,7 +44,6 @@ int main() {
     // ------------------------------------------------------------------------
     while (!renderer.shouldClose() && neat.generation < GENERATIONS) {
         int gen = neat.generation;
-        //std::cout << "\n===== Generation " << gen << " =====\n";
 
         double totalFitness = 0.0;
         double maxFitness   = -1e9;
@@ -68,21 +67,12 @@ int main() {
                 maxFitness = res.fitness;
                 bestIdx    = static_cast<int>(i);
             }
-
-            // // Verbose per-genome logging
-            // std::cout << "[Gen " << gen << "] Genome " << i
-            //           << " -> Fitness: " << res.fitness << "\n";
         }
 
         // Compute summary stats
         double avgFitness   = totalFitness / pop.size();
         int    speciesCount = static_cast<int>(neat.species().size());
 
-        // // Summary log
-        // std::cout << "Summaries for Generation " << gen << ":\n"
-        //           << "  Max Fitness   = " << maxFitness   << "\n"
-        //           << "  Avg Fitness   = " << avgFitness   << "\n"
-        //           << "  Species Count = " << speciesCount << "\n";
 
         // --------------------------------------------------------------------
         // Visualization: re-evaluate best genome for path, then render a
@@ -152,9 +142,23 @@ int main() {
             float hy = float(head.y) / GRID_H;
             float fx = float(food.x - head.x) / GRID_W;
             float fy = float(food.y - head.y) / GRID_H;
+            auto ray = snake.getRayCast();
+            float left  = std::get<0>(ray);
+            float front = std::get<1>(ray);
+            float right = std::get<2>(ray);
+            float bias = 1.0;
+            std::cout << "Inputs: "
+              << "hx=" << hx << " "
+              << "hy=" << hy << " "
+              << "fx=" << fx << " "
+              << "fy=" << fy << " "
+              << "left=" << left << " "
+              << "front=" << front << " "
+              << "right=" << right << "\n";
+
 
             // 2) Feed network and update direction
-            auto outputs = net.feed({ hx, hy, fx, fy });
+            auto outputs = net.feed({ hx, hy, fx, fy, left, front, right, bias});
             int dir = std::distance(
                 outputs.begin(),
                 std::max_element(outputs.begin(), outputs.end())

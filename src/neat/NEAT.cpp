@@ -4,7 +4,7 @@
 #include <cmath>
 using namespace neat;
 
-static constexpr float C1=1.0f, C2=1.0f, C3=0.4f, COMPAT_THRESH=3.0f;
+//static constexpr float C1=1.0f, C2=1.0f, C3=0.4f, COMPAT_THRESH=3.0f;
 
 NEAT::NEAT(int popSize, int inN, int outN)
  : popSize_(popSize), rng_(std::random_device{}())
@@ -72,7 +72,7 @@ void NEAT::reproduce() {
         if (a->fitness < b->fitness) std::swap(a,b);
         Genome* child = new Genome(Genome::crossover(*a,*b));
         child->mutateWeights();
-        if (uni(rng_) < 0.03f) child->mutateAddConnection();
+        if (uni(rng_) < 0.2f) child->mutateAddConnection();
         if (uni(rng_) < 0.01f) child->mutateAddNode();
         newPop.push_back(child);
     }

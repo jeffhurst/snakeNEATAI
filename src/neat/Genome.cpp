@@ -10,8 +10,8 @@ static std::uniform_real_distribution<float> uni(-1.0f,1.0f);
 
 void Genome::mutateWeights() {
     for (auto& kv : connections) {
-        if (uni(rng) < 0.9f) // 90% perturb
-            kv.second.weight += std::normal_distribution<float>(0,0.1f)(rng);
+        if (uni(rng) < 0.90f) // 90% perturb
+            kv.second.weight += std::normal_distribution<float>(0,0.2f)(rng);
         else               // else assign new
             kv.second.weight = uni(rng);
     }
@@ -24,6 +24,9 @@ void Genome::mutateAddConnection() {
     std::uniform_int_distribution<size_t> di(0, ids.size()-1);
     for (int tries=0; tries<10; ++tries) {
         NodeId a = ids[di(rng)], b = ids[di(rng)];
+        if (nodes[b].type == NodeGene::INPUT) {
+            return;
+        }
         if (a==b) continue;
         // check existing
         bool exists = false;
