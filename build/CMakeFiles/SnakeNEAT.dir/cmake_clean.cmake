@@ -7,6 +7,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/SnakeNEAT.dir/src/main.cpp.obj.d"
   "CMakeFiles/SnakeNEAT.dir/src/neat/Genome.cpp.obj"
   "CMakeFiles/SnakeNEAT.dir/src/neat/Genome.cpp.obj.d"
+  "CMakeFiles/SnakeNEAT.dir/src/neat/InnovationTracker.cpp.obj"
+  "CMakeFiles/SnakeNEAT.dir/src/neat/InnovationTracker.cpp.obj.d"
   "CMakeFiles/SnakeNEAT.dir/src/neat/NEAT.cpp.obj"
   "CMakeFiles/SnakeNEAT.dir/src/neat/NEAT.cpp.obj.d"
   "CMakeFiles/SnakeNEAT.dir/src/neat/Network.cpp.obj"

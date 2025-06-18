@@ -224,6 +224,30 @@ src/neat/Genome.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\SnakeNEAT.dir\build.make CMakeFiles/SnakeNEAT.dir/src/neat/Genome.cpp.s
 .PHONY : src/neat/Genome.cpp.s
 
+src/neat/InnovationTracker.obj: src/neat/InnovationTracker.cpp.obj
+.PHONY : src/neat/InnovationTracker.obj
+
+# target to build an object file
+src/neat/InnovationTracker.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SnakeNEAT.dir\build.make CMakeFiles/SnakeNEAT.dir/src/neat/InnovationTracker.cpp.obj
+.PHONY : src/neat/InnovationTracker.cpp.obj
+
+src/neat/InnovationTracker.i: src/neat/InnovationTracker.cpp.i
+.PHONY : src/neat/InnovationTracker.i
+
+# target to preprocess a source file
+src/neat/InnovationTracker.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SnakeNEAT.dir\build.make CMakeFiles/SnakeNEAT.dir/src/neat/InnovationTracker.cpp.i
+.PHONY : src/neat/InnovationTracker.cpp.i
+
+src/neat/InnovationTracker.s: src/neat/InnovationTracker.cpp.s
+.PHONY : src/neat/InnovationTracker.s
+
+# target to generate assembly for a file
+src/neat/InnovationTracker.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SnakeNEAT.dir\build.make CMakeFiles/SnakeNEAT.dir/src/neat/InnovationTracker.cpp.s
+.PHONY : src/neat/InnovationTracker.cpp.s
+
 src/neat/NEAT.obj: src/neat/NEAT.cpp.obj
 .PHONY : src/neat/NEAT.obj
 
@@ -341,6 +365,9 @@ help:
 	@echo ... src/neat/Genome.obj
 	@echo ... src/neat/Genome.i
 	@echo ... src/neat/Genome.s
+	@echo ... src/neat/InnovationTracker.obj
+	@echo ... src/neat/InnovationTracker.i
+	@echo ... src/neat/InnovationTracker.s
 	@echo ... src/neat/NEAT.obj
 	@echo ... src/neat/NEAT.i
 	@echo ... src/neat/NEAT.s

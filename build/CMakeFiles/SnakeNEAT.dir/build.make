@@ -131,11 +131,26 @@ CMakeFiles/SnakeNEAT.dir/src/neat/Network.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/SnakeNEAT.dir/src/neat/Network.cpp.s"
 	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\jhurs\dev\NEAT\snakeNEATAI\src\neat\Network.cpp -o CMakeFiles\SnakeNEAT.dir\src\neat\Network.cpp.s
 
+CMakeFiles/SnakeNEAT.dir/src/neat/InnovationTracker.cpp.obj: CMakeFiles/SnakeNEAT.dir/flags.make
+CMakeFiles/SnakeNEAT.dir/src/neat/InnovationTracker.cpp.obj: CMakeFiles/SnakeNEAT.dir/includes_CXX.rsp
+CMakeFiles/SnakeNEAT.dir/src/neat/InnovationTracker.cpp.obj: C:/Users/jhurs/dev/NEAT/snakeNEATAI/src/neat/InnovationTracker.cpp
+CMakeFiles/SnakeNEAT.dir/src/neat/InnovationTracker.cpp.obj: CMakeFiles/SnakeNEAT.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\jhurs\dev\NEAT\snakeNEATAI\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/SnakeNEAT.dir/src/neat/InnovationTracker.cpp.obj"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SnakeNEAT.dir/src/neat/InnovationTracker.cpp.obj -MF CMakeFiles\SnakeNEAT.dir\src\neat\InnovationTracker.cpp.obj.d -o CMakeFiles\SnakeNEAT.dir\src\neat\InnovationTracker.cpp.obj -c C:\Users\jhurs\dev\NEAT\snakeNEATAI\src\neat\InnovationTracker.cpp
+
+CMakeFiles/SnakeNEAT.dir/src/neat/InnovationTracker.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/SnakeNEAT.dir/src/neat/InnovationTracker.cpp.i"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\jhurs\dev\NEAT\snakeNEATAI\src\neat\InnovationTracker.cpp > CMakeFiles\SnakeNEAT.dir\src\neat\InnovationTracker.cpp.i
+
+CMakeFiles/SnakeNEAT.dir/src/neat/InnovationTracker.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/SnakeNEAT.dir/src/neat/InnovationTracker.cpp.s"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\jhurs\dev\NEAT\snakeNEATAI\src\neat\InnovationTracker.cpp -o CMakeFiles\SnakeNEAT.dir\src\neat\InnovationTracker.cpp.s
+
 CMakeFiles/SnakeNEAT.dir/src/neat/NEAT.cpp.obj: CMakeFiles/SnakeNEAT.dir/flags.make
 CMakeFiles/SnakeNEAT.dir/src/neat/NEAT.cpp.obj: CMakeFiles/SnakeNEAT.dir/includes_CXX.rsp
 CMakeFiles/SnakeNEAT.dir/src/neat/NEAT.cpp.obj: C:/Users/jhurs/dev/NEAT/snakeNEATAI/src/neat/NEAT.cpp
 CMakeFiles/SnakeNEAT.dir/src/neat/NEAT.cpp.obj: CMakeFiles/SnakeNEAT.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\jhurs\dev\NEAT\snakeNEATAI\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/SnakeNEAT.dir/src/neat/NEAT.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\jhurs\dev\NEAT\snakeNEATAI\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/SnakeNEAT.dir/src/neat/NEAT.cpp.obj"
 	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SnakeNEAT.dir/src/neat/NEAT.cpp.obj -MF CMakeFiles\SnakeNEAT.dir\src\neat\NEAT.cpp.obj.d -o CMakeFiles\SnakeNEAT.dir\src\neat\NEAT.cpp.obj -c C:\Users\jhurs\dev\NEAT\snakeNEATAI\src\neat\NEAT.cpp
 
 CMakeFiles/SnakeNEAT.dir/src/neat/NEAT.cpp.i: cmake_force
@@ -150,7 +165,7 @@ CMakeFiles/SnakeNEAT.dir/src/neat/Species.cpp.obj: CMakeFiles/SnakeNEAT.dir/flag
 CMakeFiles/SnakeNEAT.dir/src/neat/Species.cpp.obj: CMakeFiles/SnakeNEAT.dir/includes_CXX.rsp
 CMakeFiles/SnakeNEAT.dir/src/neat/Species.cpp.obj: C:/Users/jhurs/dev/NEAT/snakeNEATAI/src/neat/Species.cpp
 CMakeFiles/SnakeNEAT.dir/src/neat/Species.cpp.obj: CMakeFiles/SnakeNEAT.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\jhurs\dev\NEAT\snakeNEATAI\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/SnakeNEAT.dir/src/neat/Species.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\jhurs\dev\NEAT\snakeNEATAI\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/SnakeNEAT.dir/src/neat/Species.cpp.obj"
 	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SnakeNEAT.dir/src/neat/Species.cpp.obj -MF CMakeFiles\SnakeNEAT.dir\src\neat\Species.cpp.obj.d -o CMakeFiles\SnakeNEAT.dir\src\neat\Species.cpp.obj -c C:\Users\jhurs\dev\NEAT\snakeNEATAI\src\neat\Species.cpp
 
 CMakeFiles/SnakeNEAT.dir/src/neat/Species.cpp.i: cmake_force
@@ -165,7 +180,7 @@ CMakeFiles/SnakeNEAT.dir/src/render/Renderer.cpp.obj: CMakeFiles/SnakeNEAT.dir/f
 CMakeFiles/SnakeNEAT.dir/src/render/Renderer.cpp.obj: CMakeFiles/SnakeNEAT.dir/includes_CXX.rsp
 CMakeFiles/SnakeNEAT.dir/src/render/Renderer.cpp.obj: C:/Users/jhurs/dev/NEAT/snakeNEATAI/src/render/Renderer.cpp
 CMakeFiles/SnakeNEAT.dir/src/render/Renderer.cpp.obj: CMakeFiles/SnakeNEAT.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\jhurs\dev\NEAT\snakeNEATAI\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/SnakeNEAT.dir/src/render/Renderer.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\jhurs\dev\NEAT\snakeNEATAI\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/SnakeNEAT.dir/src/render/Renderer.cpp.obj"
 	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SnakeNEAT.dir/src/render/Renderer.cpp.obj -MF CMakeFiles\SnakeNEAT.dir\src\render\Renderer.cpp.obj.d -o CMakeFiles\SnakeNEAT.dir\src\render\Renderer.cpp.obj -c C:\Users\jhurs\dev\NEAT\snakeNEATAI\src\render\Renderer.cpp
 
 CMakeFiles/SnakeNEAT.dir/src/render/Renderer.cpp.i: cmake_force
@@ -180,7 +195,7 @@ CMakeFiles/SnakeNEAT.dir/src/main.cpp.obj: CMakeFiles/SnakeNEAT.dir/flags.make
 CMakeFiles/SnakeNEAT.dir/src/main.cpp.obj: CMakeFiles/SnakeNEAT.dir/includes_CXX.rsp
 CMakeFiles/SnakeNEAT.dir/src/main.cpp.obj: C:/Users/jhurs/dev/NEAT/snakeNEATAI/src/main.cpp
 CMakeFiles/SnakeNEAT.dir/src/main.cpp.obj: CMakeFiles/SnakeNEAT.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\jhurs\dev\NEAT\snakeNEATAI\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/SnakeNEAT.dir/src/main.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\jhurs\dev\NEAT\snakeNEATAI\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/SnakeNEAT.dir/src/main.cpp.obj"
 	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SnakeNEAT.dir/src/main.cpp.obj -MF CMakeFiles\SnakeNEAT.dir\src\main.cpp.obj.d -o CMakeFiles\SnakeNEAT.dir\src\main.cpp.obj -c C:\Users\jhurs\dev\NEAT\snakeNEATAI\src\main.cpp
 
 CMakeFiles/SnakeNEAT.dir/src/main.cpp.i: cmake_force
@@ -197,6 +212,7 @@ SnakeNEAT_OBJECTS = \
 "CMakeFiles/SnakeNEAT.dir/src/game/Game.cpp.obj" \
 "CMakeFiles/SnakeNEAT.dir/src/neat/Genome.cpp.obj" \
 "CMakeFiles/SnakeNEAT.dir/src/neat/Network.cpp.obj" \
+"CMakeFiles/SnakeNEAT.dir/src/neat/InnovationTracker.cpp.obj" \
 "CMakeFiles/SnakeNEAT.dir/src/neat/NEAT.cpp.obj" \
 "CMakeFiles/SnakeNEAT.dir/src/neat/Species.cpp.obj" \
 "CMakeFiles/SnakeNEAT.dir/src/render/Renderer.cpp.obj" \
@@ -209,6 +225,7 @@ SnakeNEAT.exe: CMakeFiles/SnakeNEAT.dir/src/game/Snake.cpp.obj
 SnakeNEAT.exe: CMakeFiles/SnakeNEAT.dir/src/game/Game.cpp.obj
 SnakeNEAT.exe: CMakeFiles/SnakeNEAT.dir/src/neat/Genome.cpp.obj
 SnakeNEAT.exe: CMakeFiles/SnakeNEAT.dir/src/neat/Network.cpp.obj
+SnakeNEAT.exe: CMakeFiles/SnakeNEAT.dir/src/neat/InnovationTracker.cpp.obj
 SnakeNEAT.exe: CMakeFiles/SnakeNEAT.dir/src/neat/NEAT.cpp.obj
 SnakeNEAT.exe: CMakeFiles/SnakeNEAT.dir/src/neat/Species.cpp.obj
 SnakeNEAT.exe: CMakeFiles/SnakeNEAT.dir/src/render/Renderer.cpp.obj
@@ -218,7 +235,7 @@ SnakeNEAT.exe: C:/msys64/mingw64/lib/libraylib.a
 SnakeNEAT.exe: CMakeFiles/SnakeNEAT.dir/linkLibs.rsp
 SnakeNEAT.exe: CMakeFiles/SnakeNEAT.dir/objects1.rsp
 SnakeNEAT.exe: CMakeFiles/SnakeNEAT.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\jhurs\dev\NEAT\snakeNEATAI\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable SnakeNEAT.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\jhurs\dev\NEAT\snakeNEATAI\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable SnakeNEAT.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\SnakeNEAT.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

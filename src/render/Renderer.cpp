@@ -8,6 +8,7 @@
 #include "game/Snake.h" 
 #include <raylib.h>
 #include <algorithm>
+#include <iostream>
 using namespace render;
 using namespace game;
 using namespace neat;
@@ -73,6 +74,7 @@ void Renderer::drawNetwork(const Network& net) {
     for (const auto& kv : genome.nodes) {
         switch (kv.second.type) {
             case NodeGene::INPUT:  inputs.push_back(kv.first);  break;
+            case NodeGene::BIAS:  inputs.push_back(kv.first);  break;
             case NodeGene::HIDDEN: hidden.push_back(kv.first);  break;
             case NodeGene::OUTPUT: outputs.push_back(kv.first); break;
         }

@@ -17,14 +17,14 @@ int main() {
     // ------------------------------------------------------------------------
     // Simulation parameters 
     // ------------------------------------------------------------------------
-    const int GRID_W       = 5;    ///< grid width  (cells)
-    const int GRID_H       = 5;    ///< grid height (cells)
-    const int MAX_TICKS    = 1000;   ///< max steps per simulation
+    const int GRID_W       = 10;    ///< grid width  (cells)
+    const int GRID_H       = 10;    ///< grid height (cells)
+    const int MAX_TICKS    = 400;   ///< max steps per simulation
 
     const int POP_SIZE     = 1000;    ///< genomes per generation
-    const int INPUT_N      = 8;     ///< network input size (hx, hy, fx, fy)
+    const int INPUT_N      = 7;     ///< network input size (hx, hy, fx, fy)
     const int OUTPUT_N     = 4;     ///< network outputs (UP,DOWN,LEFT,RIGHT)
-    const int GENERATIONS  = 2000;   ///< total training generations
+    const int GENERATIONS  = 1000;   ///< total training generations
 
     // ------------------------------------------------------------------------
     // Rendering parameters
@@ -146,7 +146,6 @@ int main() {
             float left  = std::get<0>(ray);
             float front = std::get<1>(ray);
             float right = std::get<2>(ray);
-            float bias = 1.0;
             std::cout << "Inputs: "
               << "hx=" << hx << " "
               << "hy=" << hy << " "
@@ -158,7 +157,7 @@ int main() {
 
 
             // 2) Feed network and update direction
-            auto outputs = net.feed({ hx, hy, fx, fy, left, front, right, bias});
+            auto outputs = net.feed({ hx, hy, fx, fy, left, front, right});
             int dir = std::distance(
                 outputs.begin(),
                 std::max_element(outputs.begin(), outputs.end())

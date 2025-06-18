@@ -10,7 +10,7 @@ using InnovId = uint64_t;
 // NodeGene: id and type (input, hidden, output)
 struct NodeGene {
     NodeId id;
-    enum Type { INPUT, HIDDEN, OUTPUT } type;
+    enum Type { INPUT, BIAS, HIDDEN, OUTPUT } type;
 };
 
 // ConnectionGene: from, to, weight, enabled, innovation number

@@ -84,12 +84,12 @@ clean: CMakeFiles/SnakeNEAT.dir/clean
 CMakeFiles/SnakeNEAT.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\SnakeNEAT.dir\build.make CMakeFiles/SnakeNEAT.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\SnakeNEAT.dir\build.make CMakeFiles/SnakeNEAT.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\jhurs\dev\NEAT\snakeNEATAI\build\CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9 "Built target SnakeNEAT"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\jhurs\dev\NEAT\snakeNEATAI\build\CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10 "Built target SnakeNEAT"
 .PHONY : CMakeFiles/SnakeNEAT.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/SnakeNEAT.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\jhurs\dev\NEAT\snakeNEATAI\build\CMakeFiles 9
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\jhurs\dev\NEAT\snakeNEATAI\build\CMakeFiles 10
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/SnakeNEAT.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\jhurs\dev\NEAT\snakeNEATAI\build\CMakeFiles 0
 .PHONY : CMakeFiles/SnakeNEAT.dir/rule
@@ -101,7 +101,7 @@ SnakeNEAT: CMakeFiles/SnakeNEAT.dir/rule
 # codegen rule for target.
 CMakeFiles/SnakeNEAT.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\SnakeNEAT.dir\build.make CMakeFiles/SnakeNEAT.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\jhurs\dev\NEAT\snakeNEATAI\build\CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9 "Finished codegen for target SnakeNEAT"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\jhurs\dev\NEAT\snakeNEATAI\build\CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10 "Finished codegen for target SnakeNEAT"
 .PHONY : CMakeFiles/SnakeNEAT.dir/codegen
 
 # clean rule for target.

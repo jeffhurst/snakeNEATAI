@@ -20,6 +20,7 @@ set(GAME_SRCS
 set(NEAT_SRCS
     src/neat/Genome.cpp
     src/neat/Network.cpp
+    src/neat/InnovationTracker.cpp
     src/neat/NEAT.cpp
     src/neat/Species.cpp
 )

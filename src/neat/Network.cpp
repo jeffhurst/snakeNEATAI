@@ -37,8 +37,11 @@ std::vector<float> Network::feed(const std::vector<float>& in) {
     size_t i = 0;
     // 1) initialize all node values
     for (auto& kv : genome_.nodes) {
-        if (kv.second.type == NodeGene::INPUT)
+        auto type = kv.second.type;
+        if (type == NodeGene::INPUT)
             values[kv.first] = in.at(i++);
+        else if (type == NodeGene::BIAS)
+            values[kv.first] = 1.0f;
         else
             values[kv.first] = 0.0f;
     }
@@ -54,13 +57,15 @@ std::vector<float> Network::feed(const std::vector<float>& in) {
         }
 
         // 3) activation — guard the at()
-        auto it = genome_.nodes.find(nid);
-        if (it != genome_.nodes.end()) {
-            if (it->second.type != NodeGene::INPUT) {
-                values[nid] = std::tanh(values[nid]);
-            }
-        } else {
-            // pass
+        auto nodeIt = genome_.nodes.find(nid);
+        if (nodeIt == genome_.nodes.end()) {
+            // this should never happen if your genome is consistent,
+            // but we skip it to avoid the crash:
+            continue;
+        }
+        auto type = nodeIt->second.type;
+        if (type == NodeGene::HIDDEN || type == NodeGene::OUTPUT) {
+            values[nid] = std::tanh(values[nid]);
         }
     }
     activations_ = values;
