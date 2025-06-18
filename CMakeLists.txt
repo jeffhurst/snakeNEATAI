@@ -3,6 +3,7 @@ project(SnakeNEAT LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 if (NOT MSVC)
+  # set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -march=native -pipe -g -O0 -Wall -Wextra")
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -march=native -pipe")
 endif()
 

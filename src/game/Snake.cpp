@@ -55,9 +55,9 @@ std::tuple<float, float, float> Snake::getRayCast() const {
             pos.x += dirVec.x;
             pos.y += dirVec.y;
             if (isBlocked(pos))
-                return (i - 1) / 3.0f;
+                return 1.0f - ((i - 1) / 3.0f);
         }
-        return 1.0f;
+        return 0.0f;
     };
 
     float leftDist   = checkDir(lft);

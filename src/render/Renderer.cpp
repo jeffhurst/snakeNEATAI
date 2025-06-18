@@ -82,9 +82,9 @@ void Renderer::drawNetwork(const Network& net) {
 
     // Define the region on screen to draw the network (right 35% of window)
     float areaX = screenW_ * 0.55f;
-    float areaY = screenH_ * 0.1f;
+    float areaY = screenH_ * 0.05f;
     float areaW = screenW_ * 0.4f;
-    float areaH = screenH_ * 0.8f;
+    float areaH = screenH_ * 0.9f;
 
     // ---- Topological sort (layout columns) ----
 
